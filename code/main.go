@@ -1,5 +1,10 @@
 package main
 
-func main() {
+func allPermutations() {
 
+}
+
+func main() {
+	str := "abc"
+	allPermutations()
 }
