@@ -1,29 +1,14 @@
 package main
 
-import (
-	"fmt"
-	"math"
-)
+import "fmt"
 
-func isPrime(n int) {
-	// seive of erathosthesis
-	arr := make([]bool, n+1)
-	for i := 2; i < n+1; i++ {
-		arr[i] = true
+func numberOfWay(n, m int) int {
+	if n == 1 || m == 1 {
+		return 1
 	}
-	for i := 2; i < int(math.Sqrt(float64(n))); i++ {
-		for j := i + i; j <= n; j += i {
-			arr[j] = false
-		}
-
-	}
-	for i := 0; i < len(arr); i++ {
-		if arr[i] {
-			fmt.Println(i)
-		}
-	}
+	return numberOfWay(n-1, m) + numberOfWay(n, m-1)
 }
 
 func main() {
-	isPrime(10)
+	fmt.Println(numberOfWay(10, 10))
 }
