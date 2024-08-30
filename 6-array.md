@@ -1,14 +1,16 @@
-### Array Algorithms Documentation
-**Overview: What is an Array?**
+# Array Algorithms Documentation
 
-An array is a linear data structure where elements are stored in contiguous memory locations. All elements in an array are arranged sequentially, and each element can be accessed using its index. Arrays are widely used due to their simplicity and efficiency in storing and accessing data.
+## Overview: What is an Array?
+An **array** is a linear data structure where elements are stored in contiguous memory locations. All elements in an array are arranged sequentially, and each element can be accessed using its index. Arrays are widely used due to their simplicity and efficiency in storing and accessing data.
 
+---
 
-> Q: Majority Element
-Problem: Given an array, find the majority element, which is the element that appears more than half the time.
+### Q: Majority Element
+**Problem**: Given an array, find the majority element, which is the element that appears more than half the time.
 
-**Solution: Moore's Voting Algorithm.**
-```
+**Solution**: Moore's Voting Algorithm.
+
+```go
 // Example Array
 arr := []int{1, 2, 1, 1, 2, 1, 3}
 
@@ -18,11 +20,12 @@ arr := []int{1, 2, 1, 1, 2, 1, 3}
 // 3. The candidate at the end of the loop is the majority element if it exists.
 ```
 
---- 
-> Q: Subarray Generation using Recursion
-Problem: Generate all possible subarrays of a given array using recursion.
+---
 
-Solution:
+### Q: Subarray Generation using Recursion
+**Problem**: Generate all possible subarrays of a given array using recursion.
+
+**Solution**:
 
 ```go
 package main
@@ -50,10 +53,12 @@ func main() {
 }
 ```
 
-> Q: Maximum Sum Subarray
-Problem: Find the maximum sum subarray within a given array.
+---
 
-**Solution: Kadane's Algorithm.**
+### Q: Maximum Sum Subarray
+**Problem**: Find the maximum sum subarray within a given array.
+
+**Solution**: Kadane's Algorithm.
 
 ```go
 // Kadane's Algorithm to find the maximum sum subarray
@@ -74,25 +79,24 @@ func maxSumSub(arr []int) int {
 
 ---
 
-> Q: Best Time to Buy and Sell Stock - 1
-Problem: Given an array where each element represents the price of a stock on a given day, find the maximum profit you can achieve by buying and selling one share of the stock.
+### Q: Best Time to Buy and Sell Stock - 1
+**Problem**: Given an array where each element represents the price of a stock on a given day, find the maximum profit you can achieve by buying and selling one share of the stock.
 
-Solution:
+**Solution**: 
 
-**Brute Force:**
+1. **Brute Force**:
+    - Compare each price with every subsequent price.
+    - Time Complexity: O(N²), Space Complexity: O(1).
 
-Compare each price with every subsequent price.
-Time Complexity: O(N²), Space Complexity: O(1).
-Optimized - Using Right Maxima:
+2. **Optimized - Using Right Maxima**:
+    - Compute the right maximum for each element.
+    - Compare the current price with the right maxima to calculate the profit.
+    - Time Complexity: O(N), Space Complexity: O(N).
 
-Compute the right maximum for each element.
-Compare the current price with the right maxima to calculate the profit.
-**Time Complexity: O(N), Space Complexity: O(N).**
+3. **Optimized - Using Two Variables**:
+    - Track the lowest price so far and the maximum profit so far.
+    - Time Complexity: O(N), Space Complexity: O(1).
 
-**Optimized - Using Two Variables:**
-
-Track the lowest price so far and the maximum profit so far.
-Time Complexity: O(N), Space Complexity: O(1).
 ```go
 // Example Array
 arr := []int{3, 1, 4, 8, 7, 2, 5}
@@ -109,11 +113,13 @@ for _, price := range arr {
     }
 }
 ```
----
-> Q: Buy and Sell Stock - 2
-Problem: Maximize your profit with multiple buy-sell operations, but you must sell the stock before buying again.
 
-**Solution: Identify local minima and maxima.**
+---
+
+### Q: Buy and Sell Stock - 2
+**Problem**: Maximize your profit with multiple buy-sell operations, but you must sell the stock before buying again.
+
+**Solution**: Identify local minima and maxima.
 
 ```go
 arr := []int{5, 2, 6, 1, 4, 7, 3, 6}
@@ -126,18 +132,20 @@ for i := 1; i < len(arr); i++ {
     }
 }
 ```
+
 ---
-> Q: Rainwater Trapping Problem
-Problem: Given the heights of buildings, determine how much rainwater can be trapped between the buildings.
 
-Solution:
+### Q: Rainwater Trapping Problem
+**Problem**: Given the heights of buildings, determine how much rainwater can be trapped between the buildings.
 
-* Find the left maximum for each building.
-* Find the right maximum for each building.
-* Calculate the trapped water using:
-min(leftMax, rightMax) - height.
+**Solution**:
+
+1. **Find the left maximum for each building**.
+2. **Find the right maximum for each building**.
+3. **Calculate the trapped water using**:
+    - `min(leftMax, rightMax) - height`.
+
 ```go
-Copy code
 arr := []int{3, 1, 2, 4, 0, 1, 3, 2}
 
 // Left maxima array
@@ -152,5 +160,7 @@ for i := range arr {
     trappedWater += max(0, min(leftMax[i], rightMax[i]) - arr[i])
 }
 ```
+
+---
 
 This documentation outlines the key concepts and algorithms related to arrays, including how to solve various array-related problems effectively. Each algorithm is implemented in Go, with examples and step-by-step explanations to help you understand and apply them.
