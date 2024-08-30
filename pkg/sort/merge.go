@@ -1,8 +1,4 @@
-package main
-
-import (
-	"fmt"
-)
+package sort
 
 func merge(arr []int, l, m, r int) {
 	n1 := m - l + 1
@@ -43,17 +39,11 @@ func merge(arr []int, l, m, r int) {
 	}
 }
 
-func mergeSort(arr []int, l, r int) {
+func MergeSort(arr []int, l, r int) {
 	if l < r {
 		m := l + (r-l)/2
-		mergeSort(arr, l, m)
-		mergeSort(arr, m+1, r)
+		MergeSort(arr, l, m)
+		MergeSort(arr, m+1, r)
 		merge(arr, l, m, r)
 	}
-}
-
-func main() {
-	arr := []int{12, 11, 13, 5, 6, 7}
-	mergeSort(arr, 0, len(arr)-1)
-	fmt.Println("Sorted array:", arr)
 }
