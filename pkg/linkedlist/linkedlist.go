@@ -95,11 +95,6 @@ func (ll *LinkedList) Print() *LinkedList {
 }
 
 func (ll *LinkedList) Reverse() *LinkedList {
-	//     [v,ptr]->[v,ptr]->[v,ptr]->[v,nil]->
-	//prev-nil   curr	 next
-	// 			prev     curr    next
-	//                   prev     curr  next
-
 	curr := ll.Head
 	var prev *Node
 	for curr != nil {
@@ -113,22 +108,57 @@ func (ll *LinkedList) Reverse() *LinkedList {
 	return ll
 }
 
-/*
-	fmt.Println("Creating 10->20->30")
-	ll := linkedlist.New(10).
-		Insert(20).
-		Insert(30).
-		Print()
+func fromNodeReverse(head *Node) *Node {
+	if head == nil {
+		return nil
+	}
 
-	fmt.Println("Inserting 9 at 0 and 11 at 2")
-	ll = ll.InsertAt(0, 9).
-		InsertAt(2, 11).
-		Print()
-	fmt.Println("Deleting at idx 4 ")
-	ll = ll.DeleteAt(4).
-		Print()
-	fmt.Println("Reversing")
-	ll = ll.Reverse().
-		Print()
-	fmt.Println("Length", ll.Len())
-*/
+	var prev *Node
+	curr := head
+	for curr != nil {
+		temp := curr.Next
+		curr.Next = prev
+		prev = curr
+		curr = temp
+	}
+	return prev
+}
+
+func (ll *LinkedList) IsPalindrome() bool {
+	head := ll.Head
+
+	fast := head
+	slow := head
+	for fast.Next != nil && fast.Next.Next != nil {
+		fast = fast.Next.Next
+		slow = slow.Next
+	}
+
+	lside := head
+	rside := fromNodeReverse(slow)
+
+	for lside != nil && rside != nil {
+		if lside.Data != rside.Data {
+			return false
+		}
+		lside = lside.Next
+		rside = rside.Next
+	}
+	return true
+}
+
+func (ll *LinkedList) IsCycle() bool {
+	if ll == nil {
+		return false
+	}
+	slow := ll.Head
+	fast := ll.Head
+	for fast.Next != nil && fast.Next.Next != nil {
+		if fast == slow {
+			return true
+		}
+		slow = slow.Next
+		fast = fast.Next.Next
+	}
+	return true
+}
